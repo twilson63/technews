@@ -1,0 +1,19 @@
+{
+  "name": "technews",
+  "version": "0.0.1",
+  "dependencies": {
+    "filed": "0.0.5",
+    "flatiron": "~0.2.8",
+    "union": "~0.3.4",
+    "redis": "~0.8.1",
+    "ecstatic": "~0.1.6",
+    "ejs": "~0.8.3",
+    "templar": "~0.1.2",
+    "connect": "~2.5.0",
+    "event-stream": "~3.0.5"
+  },
+  "scripts": {
+    "start": "server.js"
+  },
+  "engines": "0.6 || 0.7 || 0.8"
+}

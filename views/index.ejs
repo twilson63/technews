@@ -1,0 +1,86 @@
+<%- include header.ejs  %>
+<div class="container" ng-app>
+  <section ng-controller="SideCtrl" class="span4">
+    <div class="well">
+      <img src="http://placehold.it/50&text=gravatar" class="img-polaroid pull-left" />
+      <h2 style="block:inline;padding-left: 70px;">Profile Name</h2>
+      <a href="#">View Profile</a>
+      <hr />
+      <div class="navbar">
+        <div class="navbar-inner">
+          <ul class="nav">
+            <li><a href="#">{{posts}} Posts</a></li>
+            <li><a href="#">{{ups}} Ups</a></li>
+            <li><a href="#">{{downs}} Downs</a></li>
+          </ul>
+        </div>
+      </div>
+      <hr />
+      <form name="newEvent">
+      <h4>New Event</h4>
+      <p>
+        <input type="text" placeholder="Event Name" ng-model="event.name" style="width: 95%"></input>
+      </p>
+      <p>
+        <input type="text" placeholder="http://link.com" ng-model="event.src" style="width: 95%"></input>
+      </p>
+      <p>
+        <textarea rows=4 style="width:95%;" placeholder="Post New Event" ng-model="event.body"></textarea>
+      </p>
+      <p>
+      <input type="event.date" ng-model="event.date" placeholder="event date"></input>
+      </p>
+      &nbsp;
+      <div class="pull-right">
+        {{chars}}
+        <button class="btn" ng-click="save()"><i class="icon-plus"></i>Post</button>
+      </div>
+      </form>
+      <div class="clear"></div>
+    </div>
+    <div class="well">
+      <ul class="nav">
+        <li>&copy; 2012 ChsTechNews</li>
+        <li><a href="/about">About</a></li>
+        <li><a href="/help">Help</a></li>
+        <li><a href="/terms">Terms</a></li>
+        <li><a href="/privacy">Privacy</a></li>
+        <li><a href="/blog">Blog</a></li>
+        <li><a href="/api">Api</a></li>
+        <li><a href="/media">Media</a></li>
+      </ul>
+    </div>
+  </section>
+  <section ng-controller="FeedCtrl" class="span7">
+    <div class="well">
+      <h2>News and Events</h2>
+      <hr />
+      <article ng-repeat="event in events">
+        <span class="pull-right">{{event.date}}</span>
+        <div class="pull-left" style="padding-right: 10px;">
+          <img ng-src="{{event.img}}" class="img-polaroid" />
+        </div>
+        <header>
+          <a href="#">
+            <strong>{{event.name}}</strong>
+            <span>{{event.user}}</span>
+          </a>
+        </header>
+        <p>{{event.body}}</p>
+        <footer>
+          <div class="navbar">
+            <div class="navbar-inner">
+              <ul class="nav">
+                <li><a href="#" class="" ng-click='up(event)'><i class="icon-thumbs-up"></i> Vote ({{event.ups}})</a></li>
+                <li><a href="#" class=""><i class="icon-thumbs-down"></i> Vote ({{event.downs}})</a></li>
+                <li><a href="#">Comments ({{event.comments}})</a></li>
+              </ul>
+            </div>
+          </div>
+        </footer>
+        <hr />
+      </article>
+    </div>
+  </section>
+</div>
+<%- include footer.ejs  %>

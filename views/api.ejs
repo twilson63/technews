@@ -1,0 +1,88 @@
+<%- include header.ejs  %>
+<div class="container" ng-app>
+  <section ng-controller="SideCtrl" class="span4">
+    <div class="well">
+      <img src="http://placehold.it/50&text=gravatar" class="img-polaroid pull-left" />
+      <h2 style="block:inline;padding-left: 70px;">Profile Name</h2>
+      <a href="#">View Profile</a>
+      <hr />
+      <div class="navbar">
+        <div class="navbar-inner">
+          <ul class="nav">
+            <li><a href="#">{{posts}} Posts</a></li>
+            <li><a href="#">{{ups}} Ups</a></li>
+            <li><a href="#">{{downs}} Downs</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="clear"></div>
+    </div>
+    <div class="well">
+      <ul class="nav">
+        <li>&copy; 2012 ChsTechNews</li>
+        <li><a href="/about">About</a></li>
+        <li><a href="/help">Help</a></li>
+        <li><a href="/terms">Terms</a></li>
+        <li><a href="/privacy">Privacy</a></li>
+        <li><a href="/blog">Blog</a></li>
+        <li><a href="/api">Api</a></li>
+        <li><a href="/media">Media</a></li>
+      </ul>
+    </div>
+  </section>
+  <section class="span7">
+    <div class="well">
+      <h2>API</h2>
+      <h3>URL: http://api.chstechnews.com</h3>
+      <hr />
+      <h3>Actions</h3>
+      <ul>
+        <li><a href="#create">POST /events</a></li>
+        <li><a href="#list">GET /events</a></li>
+        <li><a href="#query">GET /events?q=?</a></li>
+        <li><a href="#get">GET /events/:id</a></li>
+        <li><a href="#update">PUT /events/:id</a></li>
+        <li><a href="#delete">DELETE /events/:id</a></li>
+        
+      </ul>
+      <hr />
+      Once registered your username and password acts as your api credentials.  All api methods are authorized using basic Authentication.
+      <article id="create">
+        <header>
+          <h1>POST /events</h1>
+          <p>Creating a new event is a http post method call to the /events resource.</p>
+        </header>
+        <pre><code>
+{
+  "name": "MyEvent",
+  "src": "http://myevent.com",
+  "body": "Notes about my event",
+  "date": "Date my event will start rfc 822"
+}
+        </code></pre>
+        <p>Successful Response (Status Code 201)</p>
+        <pre><code>
+{
+  "ok": true,
+  "id": "unique event id"
+}
+        </code></pre>
+        <p>Error Response (Status Code 500)</p>
+        <pre><code>
+{
+  "errors": [
+    {"name": "is required"}
+  ]
+}
+        </code></pre>
+      </article>
+      <article id="list">
+        <header>
+          <h1>GET /events</h1>
+          <p>Getting a list of events.</p>
+        </header>
+      </article>
+    </div>
+  </section>
+</div>
+<%- include footer.ejs  %>
