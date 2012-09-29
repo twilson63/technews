@@ -2,21 +2,45 @@
 <div class="container" ng-app>
   <section ng-controller="SideCtrl" class="span4">
     <div class="well">
+      <div ng-hide="currentUser">
+        <form name="userForm">
+        <h3>Sign Up</h3>
+        <p>
+        <label>Username</label>
+        <input type="text" name="username" ng-model="user.username"></input>
+        </p>
+        <p>
+        <label>Password</label>
+        <input type="password" name="password" ng-model="user.password"></input>
+        </p>
+        <p>
+        <label>Email</label>
+        <input type="email" name="email" ng-model="user.email"></input>
+        </p>
+        <p>
+        <label>Full Name</label>
+        <input type="text" name="fullname" ng-model="user.fullname" required></input>
+        </p>
+        <button class="btn" ng-click="register()" ng-disabled="userForm.$invalid">Register</button>
+        </form>
+      </div>
+      <div ng-show="currentUser" style="display:none;">
       <img src="http://placehold.it/50&text=gravatar" class="img-polaroid pull-left" />
-      <h2 style="block:inline;padding-left: 70px;">Profile Name</h2>
+      <h2 style="block:inline;padding-left: 70px;">{{currentUser.fullname}}</h2>
       <a href="#">View Profile</a>
       <hr />
       <div class="navbar">
         <div class="navbar-inner">
           <ul class="nav">
-            <li><a href="#">{{posts}} Posts</a></li>
-            <li><a href="#">{{ups}} Ups</a></li>
-            <li><a href="#">{{downs}} Downs</a></li>
+            <li><a href="#">{{currentUser.posts}} Posts</a></li>
+            <li><a href="#">{{currentUser.ups}} Ups</a></li>
+            <li><a href="#">{{currentUser.downs}} Downs</a></li>
           </ul>
         </div>
       </div>
+      </div>
       <hr />
-      <form name="newEvent">
+      <form name="newEvent" style="display: none;" ng-show="currentUser">
       <h4>New Event</h4>
       <p>
         <input type="text" placeholder="Event Name" ng-model="event.name" style="width: 95%"></input>
@@ -28,7 +52,7 @@
         <textarea rows=4 style="width:95%;" placeholder="Post New Event" ng-model="event.body"></textarea>
       </p>
       <p>
-      <input type="event.date" ng-model="event.date" placeholder="event date"></input>
+      <input type="date" ng-model="event.date" placeholder="event date"></input>
       </p>
       &nbsp;
       <div class="pull-right">
@@ -61,9 +85,9 @@
           <img ng-src="{{event.img}}" class="img-polaroid" />
         </div>
         <header>
-          <a href="#">
+          <a href="{{event.src}}">
             <strong>{{event.name}}</strong>
-            <span>{{event.user}}</span>
+            <span>{{event.user.username}}</span>
           </a>
         </header>
         <p>{{event.body}}</p>
@@ -71,7 +95,7 @@
           <div class="navbar">
             <div class="navbar-inner">
               <ul class="nav">
-                <li><a href="#" class="" ng-click='up(event)'><i class="icon-thumbs-up"></i> Vote ({{event.ups}})</a></li>
+                <li><a href="#" class="" ng-click='up(event)' ng-disabled="currentUser === false"><i class="icon-thumbs-up"></i> Vote ({{event.ups}})</a></li>
                 <li><a href="#" class=""><i class="icon-thumbs-down"></i> Vote ({{event.downs}})</a></li>
                 <li><a href="#">Comments ({{event.comments}})</a></li>
               </ul>
